@@ -10,12 +10,12 @@ app.use("/resume", resumeRouter)
 
 app.get('/', (req, res) => {
   res.send({
-    message: "hello world"
+    message: "server is listening "
   })
 })
 
 app.listen(port, () => {
-  console.log("server running " + port);
+  console.log("server is running on port " + port);
 
 })
 

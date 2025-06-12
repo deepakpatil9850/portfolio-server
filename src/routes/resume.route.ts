@@ -1,14 +1,16 @@
 import express from 'express'
 import multer from 'multer'
+import { uploadfileController, downloadResumeController, viewResumeController } from '../controllers/resume.controller';
+import { asyncHandler } from '../utils/asyncHandler';
 
-import { uploadfileController, downloadResumeController, viewResumeController } from '../controllers/resume.controller.js'
+
 
 const resumeRouter = express.Router();
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
-resumeRouter.post('/upload-resume', upload.single('resume'), uploadfileController)
+resumeRouter.post('/upload-resume', upload.single('file'), asyncHandler(uploadfileController))
 resumeRouter.get('/download', downloadResumeController)
 resumeRouter.get('/', viewResumeController)
 
